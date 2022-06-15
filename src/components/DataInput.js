@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from 'styled-components';
 
 function readFile(e) {
   return new Promise((resolve) => {
@@ -24,17 +25,44 @@ function readFile(e) {
 
 function DataInput({ setData }) {
   return (
-    <div id="data-input">
-      <h1>csv 파일을 삽입하세요.</h1>
-      <input
-        type="file"
-        onChange={async (e) => {
-          const result = await readFile(e);
-          setData(result);
-        }}
+    <DataInputDiv>
+      <div>
+        <StyledH1>csv 파일을 삽입하세요.</StyledH1>
+        <input
+          type="file"
+          onChange={async (e) => {
+            const result = await readFile(e);
+            setData(result);
+          }}
+        />
+      </div>
+      <img
+        src="https://cdn-icons.flaticon.com/png/512/2318/premium/2318736.png?token=exp=1655307452~hmac=333fa9d866f0d5c5f4d5335b7ad15bb0"
+        alt=""
       />
-    </div>
+    </DataInputDiv>
   );
 }
 
 export default DataInput;
+
+const StyledH1 = styled.h1`
+  font-size: 24px;
+`;
+
+const DataInputDiv = styled.div`
+  background-image: linear-gradient(135deg, #6411ad 0%, #390099 100%);
+  height: 500px;
+  border-radius: 16px;
+  color: white;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  & img {
+    width: 300px;
+    height: 300px;
+    margin-left: 100px;
+  }
+`;

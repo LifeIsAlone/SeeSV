@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from 'styled-components';
 import {
   BarChart,
   Bar,
@@ -32,34 +33,49 @@ function DataChart({ data }) {
   const keys = Object.keys(dataToChart[0]);
   const chartKeys = keys.slice(1, keys.length);
   return (
-    <>
-      <h1>Data Chart</h1>
-      <ResponsiveContainer width="100%" aspect={3}>
-        <BarChart
-          width={500}
-          height={300}
-          data={dataToChart}
-          margin={{
-            top: 5,
-            right: 30,
-            left: 20,
-            bottom: 5,
-          }}
-        >
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="name" />
-          <YAxis />
-          <Tooltip />
-          <Legend />
-          {chartKeys.map((key, index) => {
-            const colorCode =
-              '#' + Math.round(Math.random() * 0xeeeeee).toString(16);
-            return <Bar dataKey={key} fill={colorCode} />;
-          })}
-        </BarChart>
-      </ResponsiveContainer>
-    </>
+    <DataChartDiv>
+      <StyledH1>Data Chart</StyledH1>
+      <DataChartWrap>
+        <ResponsiveContainer width="100%" aspect={3}>
+          <BarChart
+            width={500}
+            height={300}
+            data={dataToChart}
+            margin={{
+              top: 5,
+              right: 30,
+              left: 20,
+              bottom: 5,
+            }}
+          >
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey="name" />
+            <YAxis />
+            <Tooltip />
+            <Legend />
+            {chartKeys.map((key, index) => {
+              const colorCode =
+                '#' + Math.round(Math.random() * 0xeeeeee).toString(16);
+              return <Bar dataKey={key} fill={colorCode} />;
+            })}
+          </BarChart>
+        </ResponsiveContainer>
+      </DataChartWrap>
+    </DataChartDiv>
   );
 }
 
 export default DataChart;
+
+const StyledH1 = styled.h1`
+  font-size: 24px;
+`;
+
+const DataChartWrap = styled.div`
+  width: 1200px;
+  margin: 0 auto;
+`;
+
+const DataChartDiv = styled.div`
+  margin: 36px 0;
+`;

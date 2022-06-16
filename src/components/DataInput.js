@@ -36,10 +36,7 @@ function DataInput({ setData }) {
           }}
         />
       </div>
-      <img
-        src="https://cdn-icons.flaticon.com/png/512/2318/premium/2318736.png?token=exp=1655307452~hmac=333fa9d866f0d5c5f4d5335b7ad15bb0"
-        alt=""
-      />
+      <img src={process.env.PUBLIC_URL + 'images/analysis.png'} alt="" />
     </DataInputDiv>
   );
 }

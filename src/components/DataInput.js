@@ -36,7 +36,7 @@ function DataInput({ setData }) {
           }}
         />
       </div>
-      <img src={process.env.PUBLIC_URL + 'images/analysis.png'} alt="" />
+      <img src="/images/analysis.png" alt="" />
     </DataInputDiv>
   );
 }

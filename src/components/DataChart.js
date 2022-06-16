@@ -1,15 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
-import {
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-  ResponsiveContainer,
-} from 'recharts';
+import BarChartView from './BarChartView';
+import LineChartView from './LineChartView';
 
 function makeData(data) {
   const header = data[0];
@@ -29,37 +21,36 @@ function makeData(data) {
 }
 
 function DataChart({ data }) {
+  const [chartMode, setChartMode] = useState('bar');
   const dataToChart = makeData(data);
   const keys = Object.keys(dataToChart[0]);
   const chartKeys = keys.slice(1, keys.length);
   return (
     <DataChartDiv>
       <StyledH1>Data Chart</StyledH1>
+      <div className="buttons">
+        <ChartTypeButton
+          onClick={() => {
+            setChartMode('bar');
+          }}
+        >
+          Bar
+        </ChartTypeButton>
+        <ChartTypeButton
+          onClick={() => {
+            setChartMode('line');
+          }}
+        >
+          Line
+        </ChartTypeButton>
+      </div>
       <DataChartWrap>
-        <ResponsiveContainer width="100%" aspect={3}>
-          <BarChart
-            width={500}
-            height={300}
-            data={dataToChart}
-            margin={{
-              top: 5,
-              right: 30,
-              left: 20,
-              bottom: 5,
-            }}
-          >
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="name" />
-            <YAxis />
-            <Tooltip />
-            <Legend />
-            {chartKeys.map((key, index) => {
-              const colorCode =
-                '#' + Math.round(Math.random() * 0xeeeeee).toString(16);
-              return <Bar dataKey={key} fill={colorCode} />;
-            })}
-          </BarChart>
-        </ResponsiveContainer>
+        {chartMode === 'bar' && (
+          <BarChartView keys={chartKeys} data={dataToChart} />
+        )}
+        {chartMode === 'line' && (
+          <LineChartView keys={chartKeys} data={dataToChart} />
+        )}
       </DataChartWrap>
     </DataChartDiv>
   );
@@ -78,4 +69,20 @@ const DataChartWrap = styled.div`
 
 const DataChartDiv = styled.div`
   margin: 36px 0;
+  min-height: 500px;
+`;
+
+const ChartTypeButton = styled.button`
+  background: white;
+  border: 1px solid #390099;
+  color: #390099;
+  padding: 4px 8px;
+  margin-right: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+
+  &:hover {
+    background: #390099;
+    color: white;
+  }
 `;

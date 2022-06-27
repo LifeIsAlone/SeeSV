@@ -10,9 +10,7 @@ function App() {
   return (
     <div className="App">
       <PageMain>
-        <PageTitle>
-          <h1>Page</h1>
-        </PageTitle>
+        <PageTitle>Take a look!</PageTitle>
         <DataInput setData={setData} />
         {data && <DataView data={data} />}
         {data && <DataChart data={data} />}
@@ -36,7 +34,9 @@ function App() {
 
 export default App;
 
-const PageTitle = styled.div``;
+const PageTitle = styled.h1`
+  font-size: 28px;
+`;
 
 const PageMain = styled.div`
   width: 90%;

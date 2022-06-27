@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import BarChartView from './BarChartView';
 import LineChartView from './LineChartView';
@@ -22,9 +22,14 @@ function makeData(data) {
 
 function DataChart({ data }) {
   const [chartMode, setChartMode] = useState('bar');
+  const [activeKeys, setActiveKeys] = useState([]);
   const dataToChart = makeData(data);
   const keys = Object.keys(dataToChart[0]);
   const chartKeys = keys.slice(1, keys.length);
+
+  useEffect(() => {
+    setActiveKeys([]);
+  }, [data]);
 
   const colorSet = [
     '#4cc9f0',
@@ -39,36 +44,61 @@ function DataChart({ data }) {
     '#403d39',
   ];
 
+  const isActive = (index) => {
+    return activeKeys.includes(chartKeys[index]);
+  };
+
+  const handleKeys = (index) => {
+    if (isActive(index)) {
+      const newKeys = activeKeys.filter((item) => item !== chartKeys[index]);
+      setActiveKeys(newKeys);
+    } else {
+      setActiveKeys([...activeKeys, chartKeys[index]]);
+    }
+  };
+
   return (
     <DataChartDiv>
       <StyledH1>Data Chart</StyledH1>
       <div className="buttons">
-        <ChartTypeButton
+        <SelectButton
           onClick={() => {
             setChartMode('bar');
           }}
+          className={chartMode === 'bar' ? 'active' : ''}
         >
           Bar
-        </ChartTypeButton>
-        <ChartTypeButton
+        </SelectButton>
+        <SelectButton
           onClick={() => {
             setChartMode('line');
           }}
+          className={chartMode === 'line' ? 'active' : ''}
         >
           Line
-        </ChartTypeButton>
+        </SelectButton>
+
+        {chartKeys.map((chartkey, index) => (
+          <SelectButton
+            key={'key' + index}
+            onClick={() => handleKeys(index)}
+            className={isActive(index) ? 'active' : ''}
+          >
+            {chartkey}
+          </SelectButton>
+        ))}
       </div>
       <DataChartWrap>
         {chartMode === 'bar' && (
           <BarChartView
-            keys={chartKeys}
+            keys={activeKeys}
             data={dataToChart}
             colorSet={colorSet}
           />
         )}
         {chartMode === 'line' && (
           <LineChartView
-            keys={chartKeys}
+            keys={activeKeys}
             data={dataToChart}
             colorSet={colorSet}
           />
@@ -94,7 +124,7 @@ const DataChartDiv = styled.div`
   min-height: 500px;
 `;
 
-const ChartTypeButton = styled.button`
+const SelectButton = styled.button`
   background: white;
   border: 1px solid #390099;
   color: #390099;
@@ -102,8 +132,10 @@ const ChartTypeButton = styled.button`
   margin-right: 8px;
   border-radius: 8px;
   cursor: pointer;
+  margin-bottom: 20px;
 
-  &:hover {
+  &:hover,
+  &.active {
     background: #390099;
     color: white;
   }

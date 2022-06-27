@@ -25,6 +25,20 @@ function DataChart({ data }) {
   const dataToChart = makeData(data);
   const keys = Object.keys(dataToChart[0]);
   const chartKeys = keys.slice(1, keys.length);
+
+  const colorSet = [
+    '#4cc9f0',
+    '#ffb703',
+    '#06d6a0',
+    '#560bad',
+    '#d62828',
+    '#f15bb5',
+    '#4361ee',
+    '#99d98c',
+    '#5e548e',
+    '#403d39',
+  ];
+
   return (
     <DataChartDiv>
       <StyledH1>Data Chart</StyledH1>
@@ -46,10 +60,18 @@ function DataChart({ data }) {
       </div>
       <DataChartWrap>
         {chartMode === 'bar' && (
-          <BarChartView keys={chartKeys} data={dataToChart} />
+          <BarChartView
+            keys={chartKeys}
+            data={dataToChart}
+            colorSet={colorSet}
+          />
         )}
         {chartMode === 'line' && (
-          <LineChartView keys={chartKeys} data={dataToChart} />
+          <LineChartView
+            keys={chartKeys}
+            data={dataToChart}
+            colorSet={colorSet}
+          />
         )}
       </DataChartWrap>
     </DataChartDiv>

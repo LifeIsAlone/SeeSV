@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import logo from './analysis.png';
 
 function readFile(e) {
   return new Promise((resolve) => {
@@ -36,7 +37,7 @@ function DataInput({ setData }) {
           }}
         />
       </div>
-      <img src={`${process.env.PUBLIC_URL}/images/analysis.png`} alt="" />
+      <img src={logo} alt="data-flaticon" />
     </DataInputDiv>
   );
 }

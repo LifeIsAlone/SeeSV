@@ -10,7 +10,7 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 
-function BarChartView({ data, keys }) {
+function BarChartView({ data, keys, colorSet }) {
   return (
     <ResponsiveContainer width="100%" aspect={3}>
       <BarChart
@@ -30,8 +30,7 @@ function BarChartView({ data, keys }) {
         <Tooltip />
         <Legend />
         {keys.map((key, index) => {
-          const colorCode =
-            '#' + Math.round(Math.random() * 0xeeeeee).toString(16);
+          const colorCode = colorSet[index % 10];
           return <Bar dataKey={key} fill={colorCode} key={index} />;
         })}
       </BarChart>

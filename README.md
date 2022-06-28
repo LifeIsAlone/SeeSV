@@ -22,9 +22,9 @@ csv 파일을 넣으면 이를 차트로 시각화해주는 프로젝트이다.
 
 ## 사용한 프레임워크
 
-- React
+- [React](https://ko.reactjs.org/)
 
-- Rechart
+- [Rechart](https://recharts.org/en-US/)
 
 # 사용 방법
 

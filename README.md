@@ -26,6 +26,8 @@ csv 파일을 넣으면 이를 차트로 시각화해주는 프로젝트이다.
 
 - [Rechart](https://recharts.org/en-US/)
 
+<br />
+
 # 사용 방법
 
 ![image](https://user-images.githubusercontent.com/58796245/176097210-bac42c2c-812f-4671-b609-fb8df3f526aa.png)
@@ -40,6 +42,7 @@ csv 파일을 넣으면 이를 차트로 시각화해주는 프로젝트이다.
 
 3. 위의 사진 중 첫번째 사진은 차트를 그리기 전의 모습이며 차트 위의 버튼들을 선택하여 그리고 싶은 attribute에 대한 그래프를 그릴 수 있다.
 
+<br />
 
 # 문제점
 

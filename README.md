@@ -45,7 +45,8 @@ csv 파일을 넣으면 이를 차트로 시각화해주는 프로젝트이다.
 
 데이터 형식에 제한이 있다.
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/e05b77da-fa34-4e7a-b396-55f70db0b669/Untitled.png)
+![image](https://user-images.githubusercontent.com/58796245/176098086-e4ff7f2f-51d2-44b9-96ec-10deeb0651b9.png)
+
 
 위의 사진처럼 첫번째 컬럼이 구분요소이고 나머지가 숫자데이터여야 사용할 수 있다.
 

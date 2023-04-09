@@ -5,20 +5,11 @@ import LineChartView from './LineChartView';
 import { ChartContext } from '../store/ChartProvider';
 
 function makeData(data) {
-  const header = data[0];
-  const body = data.slice(1, data.length);
-  const result = body.map((arr) => {
-    const obj = {};
-    arr.forEach((elem, index) => {
-      if (index === 0) {
-        obj['name'] = elem;
-      } else {
-        obj[header[index]] = elem;
-      }
-    });
-
-    return obj;
-  });
+  console.log(data);
+  const [header, ...body] = data;
+  const result = body.map((arr) =>
+    Object.fromEntries(header.map((key, i) => [key, arr[i]]))
+  );
   return result;
 }
 
@@ -54,22 +45,23 @@ function DataChart() {
     setDataToChart(parsedData);
   }, [data]);
 
-  const handleKeys = (index) => {
-    const newChartData = [...chartData];
-    newChartData[index] = {
-      ...newChartData[index],
-      activated: !newChartData[index].activated,
-    };
-    const newActivatedKeys = newChartData.filter(
-      (chartKey) => chartKey.activated
-    );
-    setChartData(newChartData);
-    setActiveKeys(newActivatedKeys);
+  const toggleActivation = (index) => {
+    const updatedChartData = chartData.map((data, i) => {
+      if (i !== index) return data;
+      return {
+        ...data,
+        activated: !data.activated,
+      };
+    });
+
+    const activatedKeys = updatedChartData.filter((data) => data.activated);
+
+    setChartData(updatedChartData);
+    setActiveKeys(activatedKeys);
   };
 
   const handleChartMode = (e) => {
-    const chartType = e.target.innerText;
-    setChartMode(chartType);
+    setChartMode(e.target.innerText);
   };
 
   return (
@@ -92,7 +84,7 @@ function DataChart() {
         {chartData.map((data, index) => (
           <SelectButton
             key={'key' + index}
-            onClick={() => handleKeys(index)}
+            onClick={() => toggleActivation(index)}
             className={data.activated ? 'active' : ''}
           >
             {data.name}

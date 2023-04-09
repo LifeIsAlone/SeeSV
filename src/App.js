@@ -1,19 +1,21 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import DataChart from './components/DataChart';
 import DataInput from './components/DataInput';
 import DataView from './components/DataView';
 import styled from 'styled-components';
 import './App.css';
+import { ChartContext } from './store/ChartProvider';
 
 function App() {
-  const [data, setData] = useState(null);
+  const chartCtx = useContext(ChartContext);
+
   return (
     <div className="App">
       <PageMain>
         <PageTitle>Take a look!</PageTitle>
-        <DataInput setData={setData} />
-        {data && <DataView data={data} />}
-        {data && <DataChart data={data} />}
+        <DataInput />
+        {chartCtx.input.length > 0 && <DataView />}
+        {chartCtx.input.length > 0 && <DataChart />}
       </PageMain>
       <Footer>
         <p>ⓒ제작자: 김미소 (cozups)</p>

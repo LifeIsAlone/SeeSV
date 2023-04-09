@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
+import { ChartContext } from '../store/ChartProvider';
 
-function DataView({ data }) {
+function DataView() {
+  const chartCtx = useContext(ChartContext);
+  const data = chartCtx.input;
+
   const header = data[0];
   const body = data.slice(1, data.length);
   return (

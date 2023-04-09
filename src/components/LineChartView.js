@@ -10,7 +10,7 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 
-function LineChartView({ keys, data, colorSet }) {
+function LineChartView({ keys, data }) {
   return (
     <ResponsiveContainer width="100%" aspect={3}>
       <LineChart
@@ -30,12 +30,11 @@ function LineChartView({ keys, data, colorSet }) {
         <Tooltip />
         <Legend />
         {keys.map((key, index) => {
-          const colorCode = colorSet[index % 10];
           return (
             <Line
               type="monotone"
-              dataKey={key}
-              stroke={colorCode}
+              dataKey={key.name}
+              stroke={key.color}
               key={index}
             />
           );

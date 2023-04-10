@@ -5,7 +5,6 @@ import LineChartView from './LineChartView';
 import { ChartContext } from '../store/ChartProvider';
 
 function makeData(data) {
-  console.log(data);
   const [header, ...body] = data;
   const result = body.map((arr) =>
     Object.fromEntries(header.map((key, i) => [key, arr[i]]))

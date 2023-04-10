@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import Papa from 'papaparse';
 import styled from 'styled-components';
 import logo from './analysis.png';
 import { ChartContext } from '../store/ChartProvider';
@@ -7,17 +8,11 @@ function readFile(e) {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
     reader.onload = function () {
-      const dataRead = reader.result.split(/\r\n/);
-      const parsedData = dataRead.map((elem) => elem.split(','));
-      const data = parsedData.map((row) => {
-        return row.map((elem) => {
-          if (isNaN(elem)) {
-            return elem;
-          } else {
-            return Number(elem);
-          }
-        });
-      });
+      const data = Papa.parse(reader.result, {
+        header: true, // 첫 번째 행을 헤더로 사용
+        dynamicTyping: true, // 숫자 자동 변환
+        encoding: 'EUC-KR', // 인코딩 설정
+      }).data;
 
       resolve(data);
     };

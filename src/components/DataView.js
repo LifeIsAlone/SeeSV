@@ -6,8 +6,7 @@ function DataView() {
   const chartCtx = useContext(ChartContext);
   const data = chartCtx.input;
 
-  const header = data[0];
-  const body = data.slice(1, data.length);
+  const header = Object.keys(data[0]);
   return (
     <DataViewDiv>
       <StyledH1>Your Data</StyledH1>
@@ -21,10 +20,10 @@ function DataView() {
             </tr>
           </thead>
           <tbody>
-            {body.map((row, index) => {
+            {data.map((row, index) => {
               return (
                 <tr key={'tbody tr' + index}>
-                  {row.map((elem, idx) => (
+                  {Object.values(row).map((elem, idx) => (
                     <td key={'tr' + index + ' td' + idx}>{elem}</td>
                   ))}
                 </tr>

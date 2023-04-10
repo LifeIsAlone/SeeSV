@@ -4,14 +4,6 @@ import BarChartView from './BarChartView';
 import LineChartView from './LineChartView';
 import { ChartContext } from '../store/ChartProvider';
 
-function makeData(data) {
-  const [header, ...body] = data;
-  const result = body.map((arr) =>
-    Object.fromEntries(header.map((key, i) => [key, arr[i]]))
-  );
-  return result;
-}
-
 function randomColorGenerator() {
   const hue = Math.floor(Math.random() * 360);
   const saturation = Math.floor(Math.random() * 100);
@@ -29,8 +21,7 @@ function DataChart() {
   const [chartData, setChartData] = useState([]);
 
   useEffect(() => {
-    const parsedData = makeData(data);
-    const newChartData = Object.keys(parsedData[0])
+    const newChartData = Object.keys(data[0])
       .slice(1)
       .map((chartKey) => ({
         name: chartKey,
@@ -38,7 +29,7 @@ function DataChart() {
         color: randomColorGenerator(),
       }));
     setChartData(newChartData);
-    setDataToChart(parsedData);
+    setDataToChart(data);
     setChartMode('Bar');
   }, [data]);
 

@@ -10,7 +10,7 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 
-function LineChartView({ keys, data }) {
+function LineChartView({ keys, data, XAxisItem }) {
   return (
     <ResponsiveContainer width="100%" aspect={3}>
       <LineChart
@@ -25,7 +25,7 @@ function LineChartView({ keys, data }) {
         }}
       >
         <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="name" />
+        <XAxis dataKey="XAxisItem" />
         <YAxis />
         <Tooltip />
         <Legend />

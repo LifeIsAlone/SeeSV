@@ -10,7 +10,7 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 
-function BarChartView({ data, keys }) {
+function BarChartView({ data, keys, XAxisItem }) {
   return (
     <ResponsiveContainer width="100%" aspect={3}>
       <BarChart
@@ -23,9 +23,12 @@ function BarChartView({ data, keys }) {
           left: 20,
           bottom: 5,
         }}
+        style={{
+          backgroundColor: 'white',
+        }}
       >
         <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="name" />
+        <XAxis dataKey={XAxisItem} />
         <YAxis />
         <Tooltip />
         <Legend />

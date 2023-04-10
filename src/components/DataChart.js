@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import BarChartView from './BarChartView';
 import LineChartView from './LineChartView';
 import { ChartContext } from '../store/ChartProvider';
+import domtoimage from 'dom-to-image';
 
 function randomColorGenerator() {
   const hue = Math.floor(Math.random() * 360);
@@ -19,18 +20,19 @@ function DataChart() {
   const [activeKeys, setActiveKeys] = useState([]);
   const [dataToChart, setDataToChart] = useState([]);
   const [chartKey, setchartKey] = useState([]);
+  const [XAxisItem, setXAxisItem] = useState(null);
 
   useEffect(() => {
-    const newchartKey = Object.keys(data[0])
-      .slice(1)
-      .map((chartKey) => ({
-        name: chartKey,
-        activated: false,
-        color: randomColorGenerator(),
-      }));
+    const [item, ...restKeys] = Object.keys(data[0]);
+    const newchartKey = restKeys.map((chartKey) => ({
+      name: chartKey,
+      activated: false,
+      color: randomColorGenerator(),
+    }));
     setchartKey(newchartKey);
     setDataToChart(data);
     setChartMode('Bar');
+    setXAxisItem(item);
   }, [data]);
 
   const toggleActivation = (index) => {
@@ -50,6 +52,20 @@ function DataChart() {
 
   const handleChartMode = (e) => {
     setChartMode(e.target.innerText);
+  };
+
+  const saveChartImage = () => {
+    domtoimage
+      .toJpeg(document.querySelector('.recharts-wrapper'))
+      .then(function (dataUrl) {
+        const link = document.createElement('a');
+        link.download = 'my-chart-image.jpeg';
+        link.href = dataUrl;
+        link.click();
+      })
+      .catch(function (error) {
+        console.error('oops, something went wrong!', error);
+      });
   };
 
   return (
@@ -78,13 +94,23 @@ function DataChart() {
             {data.name}
           </SelectButton>
         ))}
+
+        <SelectButton onClick={saveChartImage}>저장</SelectButton>
       </div>
       <DataChartWrap>
         {chartMode === 'Bar' && (
-          <BarChartView keys={activeKeys} data={dataToChart} />
+          <BarChartView
+            keys={activeKeys}
+            data={dataToChart}
+            XAxisItem={XAxisItem}
+          />
         )}
         {chartMode === 'Line' && (
-          <LineChartView keys={activeKeys} data={dataToChart} />
+          <LineChartView
+            keys={activeKeys}
+            data={dataToChart}
+            XAxisItem={XAxisItem}
+          />
         )}
       </DataChartWrap>
     </DataChartDiv>

@@ -18,23 +18,23 @@ function DataChart() {
   const [chartMode, setChartMode] = useState('Bar');
   const [activeKeys, setActiveKeys] = useState([]);
   const [dataToChart, setDataToChart] = useState([]);
-  const [chartData, setChartData] = useState([]);
+  const [chartKey, setchartKey] = useState([]);
 
   useEffect(() => {
-    const newChartData = Object.keys(data[0])
+    const newchartKey = Object.keys(data[0])
       .slice(1)
       .map((chartKey) => ({
         name: chartKey,
         activated: false,
         color: randomColorGenerator(),
       }));
-    setChartData(newChartData);
+    setchartKey(newchartKey);
     setDataToChart(data);
     setChartMode('Bar');
   }, [data]);
 
   const toggleActivation = (index) => {
-    const updatedChartData = chartData.map((data, i) => {
+    const updatedChartKey = chartKey.map((data, i) => {
       if (i !== index) return data;
       return {
         ...data,
@@ -42,9 +42,9 @@ function DataChart() {
       };
     });
 
-    const activatedKeys = updatedChartData.filter((data) => data.activated);
+    const activatedKeys = updatedChartKey.filter((data) => data.activated);
 
-    setChartData(updatedChartData);
+    setchartKey(updatedChartKey);
     setActiveKeys(activatedKeys);
   };
 
@@ -69,7 +69,7 @@ function DataChart() {
           Line
         </SelectButton>
 
-        {chartData.map((data, index) => (
+        {chartKey.map((data, index) => (
           <SelectButton
             key={'key' + index}
             onClick={() => toggleActivation(index)}

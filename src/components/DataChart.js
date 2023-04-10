@@ -40,6 +40,7 @@ function DataChart() {
       }));
     setChartData(newChartData);
     setDataToChart(parsedData);
+    setChartMode('Bar');
   }, [data]);
 
   const toggleActivation = (index) => {

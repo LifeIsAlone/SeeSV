@@ -25,7 +25,7 @@ function LineChartView({ keys, data, XAxisItem }) {
         }}
       >
         <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="XAxisItem" />
+        <XAxis dataKey={XAxisItem} />
         <YAxis />
         <Tooltip />
         <Legend />

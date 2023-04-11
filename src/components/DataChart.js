@@ -4,6 +4,7 @@ import BarChartView from './BarChartView';
 import LineChartView from './LineChartView';
 import { ChartContext } from '../store/ChartProvider';
 import domtoimage from 'dom-to-image';
+import { FiDownload } from 'react-icons/fi';
 
 function randomColorGenerator() {
   const hue = Math.floor(Math.random() * 360);
@@ -94,8 +95,6 @@ function DataChart() {
             {data.name}
           </SelectButton>
         ))}
-
-        <SelectButton onClick={saveChartImage}>저장</SelectButton>
       </div>
       <DataChartWrap>
         {chartMode === 'Bar' && (
@@ -113,6 +112,11 @@ function DataChart() {
           />
         )}
       </DataChartWrap>
+      <SaveButtonDiv>
+        <SaveButton onClick={saveChartImage}>
+          <FiDownload color="white" /> 차트 저장
+        </SaveButton>
+      </SaveButtonDiv>
     </DataChartDiv>
   );
 }
@@ -147,5 +151,31 @@ const SelectButton = styled.button`
   &.active {
     background: #390099;
     color: white;
+  }
+`;
+
+const SaveButtonDiv = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-top: 2rem;
+`;
+
+const SaveButton = styled.button`
+  background: #390099;
+  color: white;
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  svg {
+    margin-right: 8px;
   }
 `;

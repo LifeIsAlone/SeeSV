@@ -36,7 +36,12 @@ function DataInput() {
         <StyledH1>csv 파일을 삽입하세요.</StyledH1>
         <InputDiv>
           <label htmlFor="file">파일 선택</label>
-          <input type="file" onChange={handleFileRead} id="file" />
+          <input
+            type="file"
+            onChange={handleFileRead}
+            id="file"
+            accept=".csv"
+          />
         </InputDiv>
       </div>
     </DataInputDiv>

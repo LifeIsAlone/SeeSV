@@ -56,8 +56,19 @@ function DataChart() {
   };
 
   const saveChartImage = () => {
+    const element = document.querySelector('.recharts-wrapper');
+
+    // 항상 1500px width로 캡쳐하기 위함
+    const width = 1500;
+    const ratio = width / element.clientWidth;
+
     domtoimage
-      .toJpeg(document.querySelector('.recharts-wrapper'), { bgcolor: 'white' })
+      .toJpeg(element, {
+        bgcolor: 'white',
+        width: element.clientWidth * ratio,
+        height: element.clientHeight * ratio,
+        style: { transform: `scale(${ratio})`, 'transform-origin': 'top left' },
+      })
       .then(function (dataUrl) {
         const link = document.createElement('a');
         link.download = 'my-chart-image.jpeg';

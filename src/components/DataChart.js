@@ -57,7 +57,7 @@ function DataChart() {
 
   const saveChartImage = () => {
     domtoimage
-      .toJpeg(document.querySelector('.recharts-wrapper'))
+      .toJpeg(document.querySelector('.recharts-wrapper'), { bgcolor: 'white' })
       .then(function (dataUrl) {
         const link = document.createElement('a');
         link.download = 'my-chart-image.jpeg';

@@ -23,9 +23,6 @@ function BarChartView({ data, keys, XAxisItem }) {
           left: 20,
           bottom: 5,
         }}
-        style={{
-          backgroundColor: 'white',
-        }}
       >
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey={XAxisItem} />

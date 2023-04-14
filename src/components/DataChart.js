@@ -124,28 +124,27 @@ function DataChart() {
 export default DataChart;
 
 const StyledH1 = styled.h1`
-  font-size: 24px;
+  font-size: 1.5rem;
 `;
 
 const DataChartWrap = styled.div`
-  width: 1200px;
   margin: 0 auto;
 `;
 
 const DataChartDiv = styled.div`
-  margin: 36px 0;
-  min-height: 500px;
+  margin: 2em 0;
 `;
 
 const SelectButton = styled.button`
   background: white;
   border: 1px solid #390099;
   color: #390099;
-  padding: 4px 8px;
-  margin-right: 8px;
+  padding: 0.25em 0.5em;
+  margin-right: 0.5em;
   border-radius: 8px;
   cursor: pointer;
-  margin-bottom: 20px;
+  margin-bottom: 1em;
+  font-size: 1rem;
 
   &:hover,
   &.active {
@@ -159,14 +158,14 @@ const SaveButtonDiv = styled.div`
   align-items: center;
   justify-content: center;
 
-  margin-top: 2rem;
+  margin-top: 2em;
 `;
 
 const SaveButton = styled.button`
   background: #390099;
   color: white;
   font-size: 1rem;
-  padding: 0.5rem 1rem;
+  padding: 0.5em 1em;
   border-radius: 12px;
   border: none;
   cursor: pointer;
@@ -176,6 +175,6 @@ const SaveButton = styled.button`
   align-items: center;
 
   svg {
-    margin-right: 8px;
+    margin-right: 0.5em;
   }
 `;

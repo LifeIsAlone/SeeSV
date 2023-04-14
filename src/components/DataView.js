@@ -39,18 +39,19 @@ function DataView() {
 export default DataView;
 
 const StyledH1 = styled.h1`
-  font-size: 24px;
+  font-size: 1.5rem;
 `;
 
 const DataViewDiv = styled.div`
-  width: 100%;
-  margin: 36px 0;
+  margin: 2rem 0;
 `;
 
 const DataTableWrap = styled.div`
   width: fit-content;
-  max-height: 400px;
+  max-width: 100%;
+  max-height: 25rem;
   overflow: scroll;
+  font-size: 1rem;
   margin: 0 auto;
 `;
 
@@ -65,12 +66,11 @@ const DataTable = styled.table`
   }
 
   & thead td {
-    padding: 8px;
+    padding: 0.5em;
   }
 
   & td {
-    min-width: 100px;
-    padding: 4px 8px;
+    padding: 0.25em 2em;
   }
 
   & tr {

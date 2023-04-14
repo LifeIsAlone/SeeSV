@@ -37,23 +37,24 @@ function App() {
 export default App;
 
 const PageTitle = styled.h1`
-  font-size: 28px;
+  font-size: 2rem;
 `;
 
 const PageMain = styled.div`
   width: 90%;
+  max-width: 1400px;
   margin: 0 auto;
 `;
 
 const Footer = styled.footer`
-  margin-top: 100px;
+  margin-top: 6rem;
   background: #b8bedd;
-  height: 100px;
+  height: 6rem;
   color: #474973;
-  font-size: 12px;
-  padding: 25px 0 0 5%;
+  font-size: 0.75rem;
+  padding: 1em 0 0 6em;
 
   & img {
-    height: 40px;
+    height: 2.5rem;
   }
 `;

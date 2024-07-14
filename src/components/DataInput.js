@@ -4,29 +4,20 @@ import styled from 'styled-components';
 import logo from './analysis.png';
 import { ChartContext } from '../store/ChartProvider';
 
-function readFile(e) {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.onload = function () {
-      const data = Papa.parse(reader.result.trim(), {
-        header: true, // 첫 번째 행을 헤더로 사용
-        dynamicTyping: true, // 숫자 자동 변환
-        encoding: 'EUC-KR', // 인코딩 설정
-      }).data;
-
-      resolve(data);
-    };
-    reader.onerror = reject;
-    reader.readAsText(e.target.files[0], 'EUC-KR');
-  });
-}
-
 function DataInput() {
   const chartCtx = useContext(ChartContext);
 
-  const handleFileRead = async (e) => {
-    const result = await readFile(e);
-    chartCtx.setInput(result);
+  const handleFileRead = (e) => {
+    const file = e.target.files[0];
+
+    Papa.parse(file, {
+      header: true, // 첫 번째 행을 헤더로 사용
+      dynamicTyping: true, // 숫자 자동 변환
+      encoding: 'EUC-KR', // 인코딩 설정
+      complete: (result) => {
+        chartCtx.setInput(result.data);
+      },
+    });
   };
 
   return (

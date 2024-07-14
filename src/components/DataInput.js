@@ -14,6 +14,7 @@ function DataInput() {
       header: true, // 첫 번째 행을 헤더로 사용
       dynamicTyping: true, // 숫자 자동 변환
       encoding: 'EUC-KR', // 인코딩 설정
+      skipEmptyLines: true,
       complete: (result) => {
         chartCtx.setInput(result.data);
       },

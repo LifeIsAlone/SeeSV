@@ -12,7 +12,7 @@ function App() {
   return (
     <div className="App">
       <PageMain>
-        <PageTitle>CSV 차트 매니저</PageTitle>
+        <PageTitle>SeeSV</PageTitle>
         <DataInput />
         {chartCtx.input.length > 0 && <DataView />}
         {chartCtx.input.length > 0 && <DataChart />}

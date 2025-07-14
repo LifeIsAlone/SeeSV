@@ -4,10 +4,10 @@ import { ChartContext } from '../store/ChartProvider';
 
 function DataTableView() {
   const chartCtx = useContext(ChartContext);
-  const data = chartCtx.body;
-  const labels = chartCtx.labels;
+  const data = chartCtx.body || null;
+  const labels = chartCtx.labels || null;
 
-  if (!data.length) {
+  if (!data?.length) {
     return null;
   }
 
@@ -18,17 +18,19 @@ function DataTableView() {
         <DataTable>
           <thead>
             <tr>
-              {labels.map((elem, index) => (
-                <td key={'header' + index}>{elem}</td>
+              {labels.map((label) => (
+                <td key={label}>{label}</td>
               ))}
             </tr>
           </thead>
           <tbody>
-            {data.map((row, index) => {
+            {data.map((row) => {
               return (
-                <tr key={'tbody tr' + index}>
-                  {Object.values(row).map((elem, idx) => (
-                    <td key={'tr' + index + ' td' + idx}>{elem}</td>
+                <tr key={row[labels[0]]}>
+                  {Object.values(row).map((elem, labelIndex) => (
+                    <td key={`${row[labels[0]]}-${labels[labelIndex]}`}>
+                      {elem}
+                    </td>
                   ))}
                 </tr>
               );

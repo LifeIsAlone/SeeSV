@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import styled from 'styled-components';
 import { ChartContext } from '../store/ChartProvider';
+import { DataTable, DataTableWrap } from './styled/table';
 
 function DataTableView() {
   const chartCtx = useContext(ChartContext);
@@ -50,42 +51,4 @@ const StyledH1 = styled.h1`
 
 const DataViewDiv = styled.div`
   margin: 0;
-`;
-
-const DataTableWrap = styled.div`
-  width: 100%;
-  height: 24rem;
-  max-width: 100%;
-  max-height: 25rem;
-  overflow: auto;
-  font-size: 1rem;
-  margin: 0 auto;
-`;
-
-const DataTable = styled.table`
-  width: 100%;
-  border-spacing: 0px;
-  border-collapse: collapse;
-  text-align: center;
-
-  & thead {
-    background: linear-gradient(135deg, #6411ad 0%, #390099 100%);
-    color: white;
-  }
-
-  & thead td {
-    padding: 0.5em;
-  }
-
-  & td {
-    padding: 0.25em 2em;
-  }
-
-  & tr {
-    border-bottom: 1px solid rgba(128, 128, 128, 0.25);
-  }
-
-  & tr:hover {
-    background: rgba(128, 128, 128, 0.1);
-  }
 `;

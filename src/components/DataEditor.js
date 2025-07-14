@@ -10,8 +10,8 @@ import { useNavigate } from 'react-router';
 function DataEditor() {
   const chartCtx = useContext(ChartContext);
   const [selectedRow, setSelectedRow] = useState([]);
-  const data = chartCtx.body || null;
-  const labels = chartCtx.labels || null;
+  const data = chartCtx.rawData || null;
+  const labels = Object.keys(chartCtx.rawData[0]) || null;
   const navigate = useNavigate();
 
   if (!data?.length) {

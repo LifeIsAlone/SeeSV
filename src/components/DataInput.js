@@ -22,6 +22,7 @@ function DataInput() {
         setFileName(file.name);
         chartCtx.setLabels(Object.keys(result.data[0]));
         chartCtx.setBody(result.data);
+        chartCtx.setRawData(result.data);
         navigate('/edit');
       },
     });

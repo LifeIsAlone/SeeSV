@@ -1,20 +1,24 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import styled from 'styled-components';
 import { ChartContext } from '../store/ChartProvider';
 
-function DataView() {
+function DataTableView() {
   const chartCtx = useContext(ChartContext);
-  const data = chartCtx.input;
+  const data = chartCtx.body;
+  const labels = chartCtx.labels;
 
-  const header = Object.keys(data[0]);
+  if (!data.length) {
+    return null;
+  }
+
   return (
     <DataViewDiv>
-      <StyledH1>Your Data</StyledH1>
+      <StyledH1>데이터 테이블</StyledH1>
       <DataTableWrap>
         <DataTable>
           <thead>
             <tr>
-              {header.map((elem, index) => (
+              {labels.map((elem, index) => (
                 <td key={'header' + index}>{elem}</td>
               ))}
             </tr>
@@ -36,7 +40,7 @@ function DataView() {
   );
 }
 
-export default DataView;
+export default DataTableView;
 
 const StyledH1 = styled.h1`
   font-size: 1.5rem;

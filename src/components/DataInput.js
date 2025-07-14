@@ -16,7 +16,8 @@ function DataInput() {
       encoding: 'EUC-KR', // 인코딩 설정
       skipEmptyLines: true,
       complete: (result) => {
-        chartCtx.setInput(result.data);
+        chartCtx.setLabels(Object.keys(result.data[0]));
+        chartCtx.setBody(result.data);
       },
     });
   };

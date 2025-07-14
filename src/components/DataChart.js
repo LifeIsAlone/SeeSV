@@ -15,7 +15,7 @@ function randomColorGenerator() {
 
 function DataChart() {
   const chartCtx = useContext(ChartContext);
-  const data = chartCtx.input;
+  const data = chartCtx.body;
 
   const [chartMode, setChartMode] = useState('Bar');
   const [activeKeys, setActiveKeys] = useState([]);
@@ -24,17 +24,23 @@ function DataChart() {
   const [XAxisItem, setXAxisItem] = useState(null);
 
   useEffect(() => {
-    const [item, ...restKeys] = Object.keys(data[0]);
-    const newchartKey = restKeys.map((chartKey) => ({
-      name: chartKey,
-      activated: false,
-      color: randomColorGenerator(),
-    }));
-    setchartKey(newchartKey);
-    setDataToChart(data);
-    setChartMode('Bar');
-    setXAxisItem(item);
-  }, [data]);
+    if (data.length) {
+      const [item, ...restKeys] = chartCtx.labels;
+      const newchartKey = restKeys.map((chartKey) => ({
+        name: chartKey,
+        activated: false,
+        color: randomColorGenerator(),
+      }));
+      setchartKey(newchartKey);
+      setDataToChart(data);
+      setChartMode('Bar');
+      setXAxisItem(item);
+    }
+  }, [data, chartCtx]);
+
+  if (!data.length) {
+    return null;
+  }
 
   const toggleActivation = (index) => {
     const updatedChartKey = chartKey.map((data, i) => {

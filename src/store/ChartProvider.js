@@ -1,20 +1,21 @@
 import { createContext, useState } from 'react';
 
 export const ChartContext = createContext({
-  input: [],
-  setInput: (data) => {},
+  labels: [],
+  body: [],
+  setLabels: () => {},
+  setBody: () => {},
 });
 
 const ChartProvider = ({ children }) => {
-  const [input, setInput] = useState([]);
-
-  const saveInput = (data) => {
-    setInput(data);
-  };
+  const [labels, setLabels] = useState([]);
+  const [body, setBody] = useState([]);
 
   const chartContext = {
-    input,
-    setInput: saveInput,
+    labels,
+    body,
+    setLabels,
+    setBody,
   };
 
   return (

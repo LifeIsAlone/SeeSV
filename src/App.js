@@ -1,21 +1,15 @@
-import React, { useContext } from 'react';
-import DataChart from './components/DataChart';
-import DataInput from './components/DataInput';
-import DataView from './components/DataView';
 import styled from 'styled-components';
 import './App.css';
-import { ChartContext } from './store/ChartProvider';
+import { DataInput, DataTableView, DataChart } from './components';
 
 function App() {
-  const chartCtx = useContext(ChartContext);
-
   return (
     <div className="App">
       <PageMain>
         <PageTitle>SeeSV</PageTitle>
         <DataInput />
-        {chartCtx.input.length > 0 && <DataView />}
-        {chartCtx.input.length > 0 && <DataChart />}
+        <DataTableView />
+        <DataChart />
       </PageMain>
       <Footer>
         <p>ⓒ제작자: 김미소 (cozups)</p>

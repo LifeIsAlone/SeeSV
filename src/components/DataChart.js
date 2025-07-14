@@ -48,7 +48,7 @@ function DataChart() {
 
   return (
     <DataChartDiv>
-      <StyledH1>Data Chart</StyledH1>
+      <StyledH1>데이터 차트</StyledH1>
 
       <div className="buttons">
         <ChartModeSelect mode={chartMode} setMode={setChartMode} />

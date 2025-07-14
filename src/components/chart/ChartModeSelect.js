@@ -2,22 +2,24 @@ import { SelectButton } from '../styled/chart';
 
 function ChartModeSelect({ mode, setMode }) {
   const handleChartMode = (e) => {
-    setMode(e.target.innerText);
+    setMode(e.target.name);
   };
 
   return (
     <div>
       <SelectButton
+        name="bar"
         onClick={handleChartMode}
-        className={mode === 'Bar' ? 'active' : ''}
+        className={mode === 'bar' ? 'active' : ''}
       >
-        Bar
+        막대 차트
       </SelectButton>
       <SelectButton
+        name="line"
         onClick={handleChartMode}
-        className={mode === 'Line' ? 'active' : ''}
+        className={mode === 'line' ? 'active' : ''}
       >
-        Line
+        선 차트
       </SelectButton>
     </div>
   );

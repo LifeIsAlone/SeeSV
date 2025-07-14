@@ -32,7 +32,6 @@ function ChartWrapper({ children }) {
   return (
     <DataChartContainer>
       {children}
-
       <SaveButton onClick={saveChartImage}>
         <FiDownload color="white" /> 차트 저장
       </SaveButton>

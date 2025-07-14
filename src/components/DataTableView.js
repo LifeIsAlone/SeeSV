@@ -49,19 +49,21 @@ const StyledH1 = styled.h1`
 `;
 
 const DataViewDiv = styled.div`
-  margin: 2rem 0;
+  margin: 0;
 `;
 
 const DataTableWrap = styled.div`
-  width: fit-content;
+  width: 100%;
+  height: 24rem;
   max-width: 100%;
   max-height: 25rem;
-  overflow: scroll;
+  overflow: auto;
   font-size: 1rem;
   margin: 0 auto;
 `;
 
 const DataTable = styled.table`
+  width: 100%;
   border-spacing: 0px;
   border-collapse: collapse;
   text-align: center;
@@ -80,6 +82,10 @@ const DataTable = styled.table`
   }
 
   & tr {
-    border-bottom: 1px solid #390099;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.25);
+  }
+
+  & tr:hover {
+    background: rgba(128, 128, 128, 0.1);
   }
 `;

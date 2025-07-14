@@ -5,8 +5,10 @@ import { DataInput, DataTableView, DataChart } from './components';
 function App() {
   return (
     <div className="App">
-      <PageMain>
+      <Header>
         <PageTitle>SeeSV</PageTitle>
+      </Header>
+      <PageMain>
         <DataInput />
         <DataTableView />
         <DataChart />
@@ -35,6 +37,12 @@ const PageTitle = styled.h1`
 `;
 
 const PageMain = styled.div`
+  width: 90%;
+  max-width: 1400px;
+  margin: 0 auto;
+`;
+
+const Header = styled.header`
   width: 90%;
   max-width: 1400px;
   margin: 0 auto;

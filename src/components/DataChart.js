@@ -15,7 +15,7 @@ function DataChart() {
   const chartCtx = useContext(ChartContext);
   const data = chartCtx.body || null;
 
-  const [chartMode, setChartMode] = useState('Bar');
+  const [chartMode, setChartMode] = useState('bar');
   const [dataToChart, setDataToChart] = useState([]);
   const [filters, setFilters] = useState([]);
 
@@ -26,7 +26,7 @@ function DataChart() {
 
   useEffect(() => {
     // 새로운 데이터 파일이 입력될 때 초기화 하는 작업
-    if (data.length) {
+    if (data?.length) {
       const [, ...restKeys] = chartCtx.labels;
 
       // 라벨 필터링을 위한 적절한 형태로 변환
@@ -38,7 +38,7 @@ function DataChart() {
 
       setFilters(labelFilters);
       setDataToChart(data);
-      setChartMode('Bar');
+      setChartMode('bar');
     }
   }, [data, chartCtx]);
 
@@ -56,14 +56,14 @@ function DataChart() {
       </div>
 
       <ChartWrapper>
-        {chartMode === 'Bar' && (
+        {chartMode === 'bar' && (
           <BarChartView
             keys={activeKeys}
             data={dataToChart}
             XAxisItem={XAxisItem}
           />
         )}
-        {chartMode === 'Line' && (
+        {chartMode === 'line' && (
           <LineChartView
             keys={activeKeys}
             data={dataToChart}

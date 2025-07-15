@@ -29,3 +29,7 @@ a {
     font-size: 40%;
   }
 }
+
+.recharts-default-legend .recharts-legend-item {
+  white-space: nowrap;
+}

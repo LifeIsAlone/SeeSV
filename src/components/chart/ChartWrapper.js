@@ -5,7 +5,7 @@ import { FiDownload } from 'react-icons/fi';
 
 function ChartWrapper({ children }) {
   const saveChartImage = () => {
-    const element = document.querySelector('.recharts-wrapper');
+    const element = document.querySelector('.recharts-responsive-container');
 
     // 항상 1500px width로 캡쳐하기 위함
     const width = 1500;
@@ -16,7 +16,10 @@ function ChartWrapper({ children }) {
         bgcolor: 'white',
         width: element.clientWidth * ratio,
         height: element.clientHeight * ratio,
-        style: { transform: `scale(${ratio})`, 'transform-origin': 'top left' },
+        style: {
+          transform: `scale(${ratio})`,
+          'transform-origin': 'top left',
+        },
       })
       .then(function (dataUrl) {
         const link = document.createElement('a');

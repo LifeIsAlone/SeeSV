@@ -4,6 +4,11 @@
   font-family: 'Noto Sans KR', sans-serif;
 }
 
+a {
+  text-decoration: none;
+  color: black;
+}
+
 @media screen and (min-width: 768px) and (max-width: 1023px) {
   /* tablet */
   html {
@@ -23,4 +28,8 @@
   html {
     font-size: 40%;
   }
+}
+
+.recharts-default-legend .recharts-legend-item {
+  white-space: nowrap;
 }

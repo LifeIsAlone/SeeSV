@@ -1,13 +1,5 @@
 import styled from 'styled-components';
-
-const Button = styled.button`
-  padding: 0.25em 0.5em;
-  margin-right: 0.5em;
-  border-radius: 8px;
-  cursor: pointer;
-  margin-bottom: 1em;
-  font-size: 1rem;
-`;
+import { Button } from './common';
 
 export const SelectButton = styled(Button)`
   background: white;

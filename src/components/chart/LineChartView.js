@@ -9,6 +9,7 @@ import {
   Legend,
   ResponsiveContainer,
 } from 'recharts';
+import CustomTooltip from './CustomTooltip';
 
 function LineChartView({ keys, data, XAxisItem }) {
   return (
@@ -17,7 +18,7 @@ function LineChartView({ keys, data, XAxisItem }) {
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey={XAxisItem} />
         <YAxis />
-        <Tooltip />
+        <Tooltip content={<CustomTooltip />} />
         <Legend />
         {keys.map((key, index) => {
           return (

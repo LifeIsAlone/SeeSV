@@ -3,11 +3,13 @@ import Papa from 'papaparse';
 import styled from 'styled-components';
 import logo from './analysis.png';
 import { ChartContext } from '../store/ChartProvider';
+import { useNavigate } from 'react-router';
 
 function DataInput() {
   const chartCtx = useContext(ChartContext);
   const isFileUploaded = chartCtx?.body?.length;
   const [fileName, setFileName] = useState('');
+  const navigate = useNavigate();
 
   const handleFileRead = (e) => {
     const file = e.target.files[0];
@@ -20,6 +22,8 @@ function DataInput() {
         setFileName(file.name);
         chartCtx.setLabels(Object.keys(result.data[0]));
         chartCtx.setBody(result.data);
+        chartCtx.setRawData(result.data);
+        navigate('/edit');
       },
     });
   };

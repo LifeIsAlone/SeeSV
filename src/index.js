@@ -4,13 +4,16 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import ChartProvider from './store/ChartProvider';
+import { BrowserRouter } from 'react-router';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <ChartProvider>
-      <App />
-    </ChartProvider>
+    <BrowserRouter>
+      <ChartProvider>
+        <App />
+      </ChartProvider>
+    </BrowserRouter>
   </React.StrictMode>
 );
 

@@ -1,17 +1,30 @@
+import { Link, Route, Routes } from 'react-router';
 import styled from 'styled-components';
 import './App.css';
-import { DataInput, DataTableView, DataChart } from './components';
+
+import HomePage from './pages/HomePage';
+import EditDataPage from './pages/EditDataPage';
+import ChartPage from './pages/ChartPage';
+import { DataInput } from './components';
+import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
   return (
     <div className="App">
       <Header>
-        <PageTitle>SeeSV</PageTitle>
+        <Link to="/">
+          <PageTitle>SeeSV</PageTitle>
+        </Link>
       </Header>
       <PageMain>
         <DataInput />
-        <DataTableView />
-        <DataChart />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route element={<ProtectedRoute />}>
+            <Route path="/edit" element={<EditDataPage />} />
+            <Route path="/chart" element={<ChartPage />} />
+          </Route>
+        </Routes>
       </PageMain>
       <Footer>
         <p>ⓒ제작자: 김미소 (cozups)</p>
@@ -32,14 +45,14 @@ function App() {
 
 export default App;
 
-const PageTitle = styled.h1`
-  font-size: 1.5rem;
-`;
-
 const PageMain = styled.div`
   width: 90%;
   max-width: 1400px;
   margin: 0 auto;
+`;
+
+const PageTitle = styled.h1`
+  font-size: 1.5rem;
 `;
 
 const Header = styled.header`

@@ -6,6 +6,7 @@ import { IoIosRefresh } from 'react-icons/io';
 import { Button, SubmitButton } from './styled/common';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router';
+import { toast } from 'sonner';
 
 function DataEditor() {
   const chartCtx = useContext(ChartContext);
@@ -29,6 +30,7 @@ function DataEditor() {
 
   const onSubmit = () => {
     if (selectedRow.length === 0) {
+      toast.warning('1개 이상의 데이터를 선택해주세요.');
       return;
     }
 

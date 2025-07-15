@@ -49,6 +49,7 @@ function DataEditor() {
         >
           전체 선택하기
         </Button>
+        <Description>{selectedRow.length}개 데이터 선택됨</Description>
       </ButtonField>
       <DataTableWrap>
         <DataTable>
@@ -97,4 +98,9 @@ const Container = styled.div`
 
 const ButtonField = styled.div`
   align-self: flex-start;
+`;
+
+const Description = styled.span`
+  color: #808080;
+  font-size: 0.9rem;
 `;

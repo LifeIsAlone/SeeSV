@@ -6,6 +6,7 @@ import HomePage from './pages/HomePage';
 import EditDataPage from './pages/EditDataPage';
 import ChartPage from './pages/ChartPage';
 import { DataInput } from './components';
+import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
   return (
@@ -19,8 +20,10 @@ function App() {
         <DataInput />
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/edit" element={<EditDataPage />} />
-          <Route path="/chart" element={<ChartPage />} />
+          <Route element={<ProtectedRoute />}>
+            <Route path="/edit" element={<EditDataPage />} />
+            <Route path="/chart" element={<ChartPage />} />
+          </Route>
         </Routes>
       </PageMain>
       <Footer>

@@ -1,5 +1,4 @@
 import { useContext, useEffect } from 'react';
-import { DataInput } from '../components';
 import { ChartContext } from '../store/ChartProvider';
 
 function HomePage() {

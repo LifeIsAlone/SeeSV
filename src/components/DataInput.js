@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import logo from './analysis.png';
 import { ChartContext } from '../store/ChartProvider';
 import { useNavigate } from 'react-router';
+import { toast } from 'sonner';
 
 function DataInput() {
   const chartCtx = useContext(ChartContext);
@@ -23,6 +24,7 @@ function DataInput() {
         chartCtx.setLabels(Object.keys(result.data[0]));
         chartCtx.setBody(result.data);
         chartCtx.setRawData(result.data);
+        toast.success('파일이 업로드 되었습니다.');
         navigate('/edit');
       },
     });

@@ -1,4 +1,5 @@
 import { Link, Route, Routes } from 'react-router';
+import { Toaster } from 'sonner';
 import styled from 'styled-components';
 import './App.css';
 
@@ -11,6 +12,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 function App() {
   return (
     <div className="App">
+      <Toaster richColors />
       <Header>
         <Link to="/">
           <PageTitle>SeeSV</PageTitle>

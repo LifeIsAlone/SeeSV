@@ -1,6 +1,9 @@
+import { useContext } from 'react';
 import { FilterButton } from '../styled/chart';
+import { ChartContext } from '../../store/ChartProvider';
 
 function LabelFilters({ labels, setLabels }) {
+  const { body } = useContext(ChartContext);
   const toggleActivation = (labelName) => {
     const updatedFilters = labels.map((label) =>
       label.name === labelName
@@ -14,6 +17,10 @@ function LabelFilters({ labels, setLabels }) {
     setLabels(updatedFilters);
   };
 
+  const isChartable = (label) => {
+    return !body.find((data) => isNaN(data[label]));
+  };
+
   return (
     <>
       {labels.map((label) => (
@@ -22,6 +29,7 @@ function LabelFilters({ labels, setLabels }) {
           key={`filter-${label.name}`}
           onClick={() => toggleActivation(label.name)}
           className={label.activated ? 'active' : ''}
+          disabled={!isChartable(label.name)}
         >
           {label.name}
         </FilterButton>

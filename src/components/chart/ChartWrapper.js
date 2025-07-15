@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import domtoimage from 'dom-to-image';
 
 import { FiDownload } from 'react-icons/fi';
+import { toast } from 'sonner';
 
 function ChartWrapper({ children }) {
   const saveChartImage = () => {
@@ -26,9 +27,10 @@ function ChartWrapper({ children }) {
         link.download = 'my-chart-image.jpeg';
         link.href = dataUrl;
         link.click();
+        toast.success('이미지 저장을 시작합니다.');
       })
       .catch(function (error) {
-        console.error('oops, something went wrong!', error);
+        toast.error('이미지 저장 작업 중 문제가 발생했습니다.');
       });
   };
 

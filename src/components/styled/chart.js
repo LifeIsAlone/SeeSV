@@ -23,4 +23,12 @@ export const FilterButton = styled(Button)`
     background: ${(props) => (props.labelColor ? props.labelColor : '#390099')};
     color: white;
   }
+
+  &:disabled,
+  &:hover:disabled {
+    background: white;
+    border: 1px solid #dddddd;
+    color: #dddddd;
+    cursor: auto;
+  }
 `;
